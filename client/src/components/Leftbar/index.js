@@ -1,9 +1,15 @@
 import React from 'react';
 import { CustomButton } from './styles';
+import { useHistory } from 'react-router-dom';
 import { Container, makeStyles, Typography } from '@material-ui/core';
 import { CenterFocusStrong, Home } from '@material-ui/icons';
+import { UseAuthProvider } from '../../contexts/authContext';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import { logout } from '../../services/auth';
 
 const Leftbar = () => {
+  const [{ auth }] = UseAuthProvider();
+  const history = useHistory();
 
   const useStyles = makeStyles((theme) => ({
     container: {
@@ -48,6 +54,19 @@ const Leftbar = () => {
 
   const classes = useStyles();
 
+  const sair = async () => {
+    const resultado = await logout(auth.token);
+    if (resultado.status === 200) {
+      localStorage.clear();
+      sessionStorage.clear();
+      history.push('/');
+      window.location.reload();
+    }
+    else {
+      console.log('erro ao deslogar');
+    }
+  }
+
   return (
     <Container className={classes.container}>
       <div className={classes.item}>
@@ -58,9 +77,9 @@ const Leftbar = () => {
         <Home className={classes.icon} />
         <Typography className={classes.text}>Home</Typography>
       </div>
-      <div className={classes.item}>
-        <Home className={classes.icon} />
-        <Typography className={classes.text}>Home</Typography>
+      <div className={classes.item} onClick={() => sair()}>
+        <ExitToAppIcon className={classes.icon} />
+        <Typography className={classes.text}>Sair</Typography>
       </div>
     </Container>
   )

@@ -118,10 +118,7 @@ const Autenticacao = {
 
     try {
       const { auth } = request.body;
-      console.log('auth', auth);
-      const tokenReceived = request.authorization;
-      console.log('authorization', tokenReceived);
-      const token = await Token.findOne({ where: { token: auth.token } });
+      const token = await Token.findOne({ where: { token: auth } });
       await token.destroy();
       return response.status(200).send('sucesso');
     }
