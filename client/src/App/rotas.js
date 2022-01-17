@@ -4,6 +4,7 @@ import Teste from '../pages/Teste';
 import Teste2 from '../pages/Teste2';
 import Login from '../pages/Login';
 import Home from '../pages/Home';
+import DashboardLayout from '../layouts/dashboard';
 //import Logout from '../components/Logout';
 
 import { withAuthorizationRouter } from './auth';
@@ -14,7 +15,12 @@ export function Rotas() {
       <Switch>
         <Route
           exact
-          path="/teste"
+          path="/admin2"
+          component={withAuthorizationRouter((props) => <DashboardLayout {...props} />)}
+        />
+        <Route
+          exact
+          path="/"
           component={withAuthorizationRouter(Teste)}
         />
         <Route

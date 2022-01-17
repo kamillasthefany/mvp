@@ -2,8 +2,15 @@ import React from 'react'
 
 export default function Teste() {
   return (
-    <div>
-      teste
-    </div>
+    <>
+      <p>teste</p>
+      <p>teste</p>
+      <p>teste</p>
+      <p>teste</p>
+      <p>teste</p>
+      <p>teste</p>
+      <p>teste</p>
+    </>
+
   )
 };
