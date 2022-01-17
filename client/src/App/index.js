@@ -9,6 +9,7 @@ import Login from '../pages/Login';
 import { Rotas } from './rotas';
 import { useHistory } from 'react-router-dom';
 import { UseAuthProvider } from './../contexts/authContext';
+import DashboardLayout from '../layouts/dashboard';
 
 export const Routes = () => {
   const [{ rehydrated, auth }] = UseAuthProvider();
@@ -33,7 +34,7 @@ export const Routes = () => {
       <Router>
         <Switch>
           {auth && auth.token &&
-            <Route to="/teste" render={props => <Rotas {...props} />} />
+            <Route to="/" render={props => <DashboardLayout {...props} />} />
           }
           <Route path="/" component={Login} />
           <Redirect to="/" exact component={Login} />

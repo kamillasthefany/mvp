@@ -15,13 +15,13 @@ export function Rotas() {
       <Switch>
         <Route
           exact
-          path="/admin2"
+          path="/admin"
           component={withAuthorizationRouter((props) => <DashboardLayout {...props} />)}
         />
         <Route
           exact
           path="/"
-          component={withAuthorizationRouter(Teste)}
+          component={withAuthorizationRouter(Home)}
         />
         <Route
           exact

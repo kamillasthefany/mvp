@@ -20,29 +20,7 @@ export default function Home() {
 
   return (
     <div>
-      <Navbar titulo="titulo" />
-      <Grid container>
-        <Grid item sm={2} xs={2}>
-          <Leftbar />
-          {/* <SideNavbar /> */}
-        </Grid>
-        <Grid item sm={10} xs={10} className={classes.container}>
-          {/* <Button
-            variant="contained"
-            color="secondary"
-            onClick={() => setOpen(!open)}
-          >Teste
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={() => setOpen(!open)}
-          >Teste
-          </Button>
-          <ModalCustom open={open} setOpen={setOpen} /> */}
-        </Grid>
-
-      </Grid>
+      <span>home</span>
     </div>
   )
 };
