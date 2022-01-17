@@ -7,23 +7,24 @@ import {
 } from 'react-router-dom';
 import Login from '../pages/Login';
 import { Rotas } from './rotas';
+import { useHistory } from 'react-router-dom';
 import { UseAuthProvider } from './../contexts/authContext';
-import { Grid, makeStyles } from "@material-ui/core";
-import Navbar from './../components/Navbar';
-import Leftbar from './../components/Leftbar';
 
 export const Routes = () => {
   const [{ rehydrated, auth }] = UseAuthProvider();
+  const history = useHistory();
 
-  const useStyles = makeStyles((theme) => ({
-    container: {
-      paddingTop: theme.spacing(10),
-      paddingLeft: theme.spacing(5),
-      paddingRight: theme.spacing(5),
-    },
-  }));
+  console.log('windows location', window.location.href.includes('login'));
 
-  const classes = useStyles();
+  const rotaDeLogin = () => {
+    return window.location.href.includes('login');
+  }
+
+  // if (rotaDeLogin && auth) {
+  //   history.push('/');
+  //   window.location.reload();
+  // }
+
   if (!rehydrated) {
     return <div>loading</div>;
   }
@@ -32,17 +33,7 @@ export const Routes = () => {
       <Router>
         <Switch>
           {auth && auth.token &&
-            <>
-              <Navbar titulo="titulo" />
-              <Grid container>
-                <Grid item sm={2} xs={2}>
-                  <Leftbar />
-                </Grid>
-                <Grid item sm={10} xs={10} className={classes.container}>
-                  <Route to="/teste" render={props => <Rotas {...props} />} />
-                </Grid>
-              </Grid>
-            </>
+            <Route to="/teste" render={props => <Rotas {...props} />} />
           }
           <Route path="/" component={Login} />
           <Redirect to="/" exact component={Login} />
